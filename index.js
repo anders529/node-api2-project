@@ -1,10 +1,15 @@
-const express = require('express');
+const express = require("express");
+const apiRouter = require("./routes/postRoutes.js");
 const server = express();
-const postRoutes = require('./routes/postRoutes');
-const port = 5000;
 server.use(express.json());
-server.use('/api/posts', postRoutes);
-server.use('/', (req, res) => {res.send('The API is running.')});
+server.use("/api/posts", apiRouter);
+server.get("/", (req, res) => {
+    res.send(
+    `<h2>Something API</h>
+    <p>Not sure what to put here.</p>`
+  );
+});
+const port = 5000;
 server.listen(port, () => {
-    console.log(`server is listening on port ${port}`)
+    console.log(`\n*** Server Running on http://localhost:${port} ***\n`);
 });
